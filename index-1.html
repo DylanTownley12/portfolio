@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dylan Townley — Web Design</title>
+<meta name="description" content="Professional websites for local businesses across the North West. From £100, no monthly fees, live in 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c0b;
+    --bg2: #111110;
+    --accent: #d4a853;
+    --accent2: #f0c97a;
+    --text: #f0ede8;
+    --muted: #666360;
+    --border: #222120;
+    --card: #161513;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 48px;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(12,12,11,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: var(--accent); font-style: italic; }
+
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+
+  .nav-link {
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    border-radius: 3px;
+    color: #0c0c0b;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--accent2); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 48px 60px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 10%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(212,168,83,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #2a2820;
+    border-radius: 20px;
+    color: var(--accent);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    padding: 7px 14px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 36px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-radius: 3px;
+    color: #0c0c0b;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--accent2); }
+
+  .btn-ghost {
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 24px; right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .hero-card-title {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero-card-site {
+    background: #0c0c0b;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .site-dot {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .site-dot-1 { background: #1a0808; }
+  .site-dot-2 { background: #0f1200; }
+  .site-dot-3 { background: #0a0a12; }
+
+  .site-name { font-size: 0.85rem; font-weight: 500; }
+  .site-type { font-size: 0.7rem; color: var(--muted); }
+
+  .site-status {
+    margin-left: auto;
+    font-size: 0.6rem;
+    color: #4ade80;
+    background: rgba(74,222,128,0.1);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 10px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  .hero-card-bottom {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hcb-label { font-size: 0.7rem; color: var(--muted); }
+  .hcb-price { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--accent); }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--accent);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+
+  .marquee {
+    display: flex;
+    gap: 48px;
+    animation: marquee 22s linear infinite;
+    width: max-content;
+  }
+
+  .marquee span {
+    color: #0c0c0b;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .marquee span.dot { opacity: 0.35; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section { padding: 90px 48px; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 440px;
+    margin-bottom: 52px;
+  }
+
+  /* FEATURES */
+  .features { border-top: 1px solid var(--border); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .feature-item {
+    background: var(--bg);
+    padding: 36px 30px;
+    transition: background 0.2s;
+  }
+
+  .feature-item:hover { background: var(--card); }
+
+  .feature-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--border);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .feature-title { font-size: 1rem; font-weight: 500; margin-bottom: 8px; }
+  .feature-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .portfolio-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .portfolio-card:hover { transform: translateY(-6px); border-color: var(--accent); }
+
+  .portfolio-preview {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+    padding: 20px;
+    position: relative;
+  }
+
+  .p1 { background: linear-gradient(160deg, #100505 0%, #1f0a0a 100%); color: #c0392b; }
+  .p2 { background: linear-gradient(160deg, #0d0d00 0%, #1a1500 100%); color: #c9a84c; }
+  .p3 { background: linear-gradient(160deg, #050510 0%, #0a0a1a 100%); color: #9b7fd4; }
+
+  .preview-tag {
+    position: absolute;
+    top: 12px; right: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+  }
+
+  .tag-live { background: rgba(74,222,128,0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+  .tag-soon { background: rgba(212,168,83,0.1); color: var(--accent); border: 1px solid rgba(212,168,83,0.2); }
+
+  .portfolio-info {
+    background: var(--card);
+    padding: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .portfolio-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 3px; }
+  .portfolio-type { font-size: 0.72rem; color: var(--muted); margin-bottom: 12px; }
+
+  .portfolio-link {
+    color: var(--accent);
+    font-size: 0.78rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+  }
+
+  .portfolio-link:hover { gap: 8px; }
+
+  /* PRICING */
+  .pricing { border-top: 1px solid var(--border); }
+
+  .pricing-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card::after {
+    content: '£100';
+    position: absolute;
+    bottom: -20px; right: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(212,168,83,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .pricing-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .pricing-note { font-size: 0.8rem; color: var(--muted); margin-bottom: 32px; }
+
+  .pricing-list { list-style: none; margin-bottom: 32px; }
+
+  .pricing-list li {
+    font-size: 0.88rem;
+    color: #aaa;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .pricing-list li::before { content: '✦'; color: var(--accent); font-size: 0.6rem; flex-shrink: 0; }
+
+  .pricing-btn {
+    display: block;
+    background: var(--accent);
+    border-radius: 4px;
+    color: #0c0c0b;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 14px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pricing-btn:hover { background: var(--accent2); }
+
+  .pricing-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .pricing-text p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .pricing-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(212,168,83,0.07);
+    border: 1px solid rgba(212,168,83,0.15);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 24px;
+  }
+
+  .pg-icon { font-size: 1.4rem; }
+  .pg-text { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  .pg-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+  /* CONTACT */
+  .contact { background: var(--bg2); border-top: 1px solid var(--border); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-left p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    font-size: 0.88rem;
+    color: #aaa;
+  }
+
+  .cd-icon {
+    width: 34px; height: 34px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 15px 28px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    margin-top: 24px;
+  }
+
+  .wa-btn:hover { opacity: 0.88; }
+
+  .contact-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px;
+  }
+
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .form-group { margin-bottom: 16px; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    padding: 12px 14px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--accent); }
+
+  .form-group textarea { height: 90px; resize: none; }
+  .form-group select option { background: #111; }
+
+  .form-submit {
+    background: var(--accent);
+    border: none;
+    border-radius: 4px;
+    color: #0c0c0b;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 14px;
+    width: 100%;
+    transition: background 0.2s;
+  }
+
+  .form-submit:hover { background: var(--accent2); }
+
+  /* FOOTER */
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  footer p { font-size: 0.75rem; color: var(--muted); }
+  footer span { color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-right .nav-link { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 90px 20px 50px; gap: 40px; }
+    .hero-visual { display: none; }
+    section { padding: 60px 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .pricing-inner { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Dylan <span>Townley</span></div>
+  <div class="nav-right">
+    <a href="#work" class="nav-link">Work</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#contact" class="nav-cta">Get a Website</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="hero-tag">Available across the North West</div>
+    <h1>Your business<br>deserves to be<br><em>found.</em></h1>
+    <p class="hero-sub">I build professional websites for local businesses — barbers, salons, cafés, tradespeople and more. One payment, no monthly fees, live within 24 hours.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get Your Website — £100</a>
+      <a href="#work" class="btn-ghost">See My Work</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">£100</div><div class="hero-stat-label">One-off fee</div></div>
+      <div><div class="hero-stat-num">24h</div><div class="hero-stat-label">Turnaround</div></div>
+      <div><div class="hero-stat-num">£0</div><div class="hero-stat-label">Monthly cost</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-title">Recent Projects</div>
+      <div class="hero-card-site">
+        <div class="site-dot site-dot-1">✂️</div>
+        <div><div class="site-name">Barber Jon's</div><div class="site-type">Barber · Saint Helens</div></div>
+        <div class="site-status">● Live</div>
+      </div>
+      <div class="hero-card-site">
+        <div class="site-dot site-dot-2">💈</div>
+        <div><div class="site-name">M Barbers</div><div class="site-type">Barber · Wigan</div></div>
+        <div class="site-status">● Live</div>
+      </div>
+      <div class="hero-card-site">
+        <div class="site-dot site-dot-3">💜</div>
+        <div><div class="site-name">Little House of Vivid</div><div class="site-type">Salon · St Helens</div></div>
+        <div class="site-status" style="color:var(--accent);background:rgba(212,168,83,0.1);border-color:rgba(212,168,83,0.2);">In Progress</div>
+      </div>
+      <div class="hero-card-bottom">
+        <div class="hcb-label">Starting from</div>
+        <div class="hcb-price">£100</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Professional Websites</span><span class="dot">✦</span>
+    <span>Custom Domains</span><span class="dot">✦</span>
+    <span>Mobile Responsive</span><span class="dot">✦</span>
+    <span>WhatsApp Booking</span><span class="dot">✦</span>
+    <span>No Monthly Fees</span><span class="dot">✦</span>
+    <span>Live in 24 Hours</span><span class="dot">✦</span>
+    <span>North West Based</span><span class="dot">✦</span>
+    <span>Professional Websites</span><span class="dot">✦</span>
+    <span>Custom Domains</span><span class="dot">✦</span>
+    <span>Mobile Responsive</span><span class="dot">✦</span>
+    <span>WhatsApp Booking</span><span class="dot">✦</span>
+    <span>No Monthly Fees</span><span class="dot">✦</span>
+    <span>Live in 24 Hours</span><span class="dot">✦</span>
+    <span>North West Based</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<section class="features">
+  <div class="section-label">What you get</div>
+  <h2 class="section-title">Everything included.<br>Nothing extra.</h2>
+  <p class="section-sub">A complete professional web presence for your business — done properly, done fast.</p>
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-num">01</div>
+      <div class="feature-title">Custom Domain</div>
+      <div class="feature-desc">Your own .co.uk address — like www.yourbusiness.co.uk. Looks professional, easy to remember.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">02</div>
+      <div class="feature-title">Mobile First</div>
+      <div class="feature-desc">Most customers find you on their phone. Your site looks perfect on every device automatically.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">03</div>
+      <div class="feature-title">Google Visibility</div>
+      <div class="feature-desc">A website helps you show up when people search for your services nearby. Facebook alone won't do this.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">04</div>
+      <div class="feature-title">WhatsApp Booking</div>
+      <div class="feature-desc">One tap and customers are messaging you directly. No forms, no phone calls, no hassle.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">05</div>
+      <div class="feature-title">Live in 24 Hours</div>
+      <div class="feature-desc">From the moment you pay, your site is usually live the same day. Fast, simple, sorted.</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">06</div>
+      <div class="feature-title">Zero Monthly Fees</div>
+      <div class="feature-desc">Pay once, own it forever. No Wix subscription, no hidden charges — just your site, running.</div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="work">
+  <div class="section-label">Portfolio</div>
+  <h2 class="section-title">Recent work.</h2>
+  <p class="section-sub">Every site is designed specifically for the business — not a template, not generic.</p>
+  <div class="portfolio-grid">
+    <div class="portfolio-card" onclick="window.open('https://dylantownley12.github.io/barber-jons','_blank')">
+      <div class="portfolio-preview p1">
+        <span class="preview-tag tag-live">● Live</span>
+        Barber Jon's
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-name">Barber Jon's</div>
+        <div class="portfolio-type">Barber Shop · Saint Helens</div>
+        <a href="https://dylantownley12.github.io/barber-jons" target="_blank" class="portfolio-link">View site →</a>
+      </div>
+    </div>
+    <div class="portfolio-card" onclick="window.open('https://dylantownley12.github.io/m-barbers','_blank')">
+      <div class="portfolio-preview p2">
+        <span class="preview-tag tag-live">● Live</span>
+        M Barbers
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-name">M Barbers</div>
+        <div class="portfolio-type">Barber Shop · Ashton-in-Makerfield</div>
+        <a href="https://dylantownley12.github.io/m-barbers" target="_blank" class="portfolio-link">View site →</a>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-preview p3">
+        <span class="preview-tag tag-soon">In Progress</span>
+        Little House<br>of Vivid
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-name">Little House of Vivid</div>
+        <div class="portfolio-type">Hair Salon · St Helens</div>
+        <span class="portfolio-link" style="color:var(--muted);cursor:default">Coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">One price.<br>Everything in.</h2>
+  <div class="pricing-inner">
+    <div class="pricing-card">
+      <div class="pricing-amount">£100</div>
+      <div class="pricing-note">One-off payment — no subscriptions, ever</div>
+      <ul class="pricing-list">
+        <li>Professional website built for your business</li>
+        <li>Custom .co.uk domain included</li>
+        <li>Mobile responsive on all devices</li>
+        <li>WhatsApp booking button</li>
+        <li>Your prices, photos & opening hours</li>
+        <li>Live within 24 hours of payment</li>
+      </ul>
+      <a href="#contact" class="pricing-btn">Get Started Today</a>
+    </div>
+    <div class="pricing-text">
+      <h3>Why do local businesses need a website?</h3>
+      <p>Facebook is great, but it won't show up when someone Googles "barber near me" or "café in [town]". A website will.</p>
+      <p>Customers want to check your prices and hours before they call or walk in. Give them that — and they're more likely to choose you over a competitor with no online presence.</p>
+      <p>At £100, it's less than most businesses spend on supplies in a week. And it works for you 24/7.</p>
+      <div class="pricing-guarantee">
+        <div class="pg-icon">👀</div>
+        <div class="pg-text">
+          <strong>See it before you pay</strong>
+          I build a preview site first — you only pay when you're happy with it.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-label">Get in touch</div>
+  <h2 class="section-title">Let's get you online.</h2>
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p>I work with businesses across the North West — barbers, salons, cafés, takeaways, tradespeople and more. If you're local and you don't have a website, I want to help.</p>
+      <p>No calls needed. Everything sorted over WhatsApp — quick, easy, no fuss.</p>
+      <div class="contact-detail"><div class="cd-icon">📍</div><span>North West, England</span></div>
+      <div class="contact-detail"><div class="cd-icon">⚡</div><span>Usually reply within a few hours</span></div>
+      <div class="contact-detail"><div class="cd-icon">👀</div><span>Free preview before you commit</span></div>
+      <a href="https://wa.me/447504693058" target="_blank" class="wa-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Message on WhatsApp
+      </a>
+    </div>
+    <div class="contact-form">
+      <h3>Quick enquiry</h3>
+      <div class="form-group">
+        <label>Business Name</label>
+        <input type="text" id="f-name" placeholder="e.g. Joe's Barbers" />
+      </div>
+      <div class="form-group">
+        <label>Business Type</label>
+        <select id="f-type">
+          <option value="">Select...</option>
+          <option>Barber Shop</option>
+          <option>Hair Salon</option>
+          <option>Café / Restaurant</option>
+          <option>Takeaway</option>
+          <option>Tradesperson</option>
+          <option>Retail Shop</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your WhatsApp Number</label>
+        <input type="tel" id="f-phone" placeholder="07XXX XXXXXX" />
+      </div>
+      <div class="form-group">
+        <label>Anything else?</label>
+        <textarea id="f-notes" placeholder="Tell me a bit about your business..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Send via WhatsApp →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Dylan Townley</span> Web Design · North West, England</p>
+  <p>Helping local businesses get online — <span>one site at a time.</span></p>
+</footer>
+
+<script>
+  function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const type = document.getElementById('f-type').value;
+    const phone = document.getElementById('f-phone').value.trim();
+    const notes = document.getElementById('f-notes').value.trim();
+    if (!name || !phone) return alert('Please fill in your business name and WhatsApp number!');
+    const msg = `Hi Dylan! I'm interested in a website.\n\nBusiness: ${name}\nType: ${type || 'Not specified'}\nPhone: ${phone}${notes ? '\n\nExtra info: ' + notes : ''}`;
+    window.open(`https://wa.me/447504693058?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+</script>
+</body>
+</html>
